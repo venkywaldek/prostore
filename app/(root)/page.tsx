@@ -1,11 +1,5 @@
-
-
 const Homepage = () => {
-  return (
-    <>
-      Pro store
-    </>
-  );
+  return <>Pro store</>;
 };
 
 export default Homepage;
