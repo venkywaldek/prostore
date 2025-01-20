@@ -1,5 +1,6 @@
 import ProductCard from './product-card';
-import {Product }from '@/types';
+import { Product } from '@/types';
+
 const ProductList = ({
   data,
   title,
@@ -10,6 +11,7 @@ const ProductList = ({
   limit?: number;
 }) => {
   const limitedData = limit ? data.slice(0, limit) : data;
+
   return (
     <div className='my-10'>
       <h2 className='h2-bold mb-4'>{title}</h2>
