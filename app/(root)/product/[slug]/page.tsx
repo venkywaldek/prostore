@@ -16,8 +16,10 @@ const ProductDetailsPage = async (props: {
     <>
       <section>
         <div className='grid grid-cols-1 md:grid-cols-5'>
-          <ProductImages images={product.images} />
-          <div className='col-span-2'>{/* Images component */}</div>
+          {/* Images component */}
+          <div className='col-span-2'>
+            <ProductImages images={product.images} />
+          </div>
           {/* Details Column */}
           <div className='col-span-2 p-5'>
             <div className='flex flex-col gap-6'>

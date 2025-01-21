@@ -4,6 +4,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/db/prisma';
 import { compareSync } from 'bcrypt-ts-edge';
 import type { NextAuthConfig } from 'next-auth';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 export const config = {
   pages: {
@@ -56,10 +58,10 @@ export const config = {
     async session({ session, user, trigger, token }: any) {
       //Set the user ID from the token
       session.user.id = token.sub;
-      session.user.role = token.role
-      session.user.name = token.name
+      session.user.role = token.role;
+      session.user.name = token.name;
 
-      console.log(token)
+      console.log(token);
       //If there is an update , set the user name
       if (trigger === 'update') {
         session.user.name = user.name;
@@ -85,8 +87,30 @@ export const config = {
       }
       return token;
     },
+    authorized({ request, auth }: any) {
+      // Check for session cart cookie
+      if (!request.cookies.get('sessionCartId')) {
+        //Generate new session cart id cookie
+        const sessionCartId = crypto.randomUUID();
+
+        //Clone the req headers
+        const newRequestHeaders = new Headers(request.headers);
+
+        //Create a new response and add the new headers
+        const response = NextResponse.next({
+          request: {
+            headers: newRequestHeaders,
+          },
+        });
+
+        //Set newly generated sessionCartId in the response cookies
+        response.cookies.set('sessionCartId', sessionCartId);
+        return response
+      } else {
+        return true;
+      }
+    },
   },
 } satisfies NextAuthConfig;
-
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
