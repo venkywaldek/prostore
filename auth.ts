@@ -88,15 +88,16 @@ export const config = {
       return token;
     },
     authorized({ request, auth }: any) {
+      const cartCookie = request.cookies.get('sessionCartId')
       // Check for session cart cookie
-      if (!request.cookies.get('sessionCartId')) {
+      if (!cartCookie) {
         //Generate new session cart id cookie
         const sessionCartId = crypto.randomUUID();
-
+        console.log();
         //Clone the req headers
         const newRequestHeaders = new Headers(request.headers);
 
-        //Create a new response and add the new headers
+        //Create a new response and add the new  headers
         const response = NextResponse.next({
           request: {
             headers: newRequestHeaders,
@@ -105,7 +106,7 @@ export const config = {
 
         //Set newly generated sessionCartId in the response cookies
         response.cookies.set('sessionCartId', sessionCartId);
-        return response
+        return response;
       } else {
         return true;
       }

@@ -10,6 +10,7 @@ import { addItemToCart } from '@/lib/actions/cart.actions';
 const AddToCart = ({ item }: { item: CartItem }) => {
   const router = useRouter();
   const { toast } = useToast();
+
   const handleAddToCart = async () => {
     const res = await addItemToCart(item);
 
@@ -37,9 +38,9 @@ const AddToCart = ({ item }: { item: CartItem }) => {
   };
 
   return (
-    <Button className='w-full ' type='button' onClick={handleAddToCart}>
+    <Button className='w-full' type='button' onClick={handleAddToCart}>
       {' '}
-     <Plus /> Add to cart{' '}
+      <Plus /> Add to cart{' '}
     </Button>
   );
 };
