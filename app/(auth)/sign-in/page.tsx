@@ -26,6 +26,7 @@ const SignInPage = async (props: {
   if (session) {
     return redirect(callbackUrl || '/');
   }
+  
   return (
     <div className='w-full max-w-md mx-auto'>
       <Card>
