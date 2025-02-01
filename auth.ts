@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/db/prisma';
-import { compareSync } from 'bcrypt-ts-edge';
+import { compare, compareSync } from 'bcrypt-ts-edge';
 import type { NextAuthConfig } from 'next-auth';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -34,7 +34,7 @@ export const config = {
         });
         //check is user exists and if the password matches
         if (user && user.password) {
-          const isMatch = compareSync(
+          const isMatch = await compare(
             credentials.password as string,
             user.password
           );
@@ -72,6 +72,7 @@ export const config = {
     async jwt({ token, user, trigger, session }: any) {
       //Assign user fields to token
       if (user) {
+        token.id = user.id
         token.role = user.role;
 
         //If user has no name then use the first part of the  email
