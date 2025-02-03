@@ -7,7 +7,7 @@ import type { NextAuthConfig } from 'next-auth';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export const config = {
+export const authConfig: NextAuthConfig = {
   pages: {
     signIn: '/sign-in',
     error: '/sign-in',
@@ -16,7 +16,7 @@ export const config = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, //30 days
   },
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma), //Use Prisma adapter for authentication
   providers: [
     CredentialsProvider({
       credentials: {
@@ -115,4 +115,6 @@ export const config = {
   },
 } satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+
+
