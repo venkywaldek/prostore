@@ -1,7 +1,3 @@
 {
-  "functions" : {
-    "app/auth/[...nextauth]/route.ts": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/app/$1" }]
 }
