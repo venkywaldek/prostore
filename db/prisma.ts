@@ -4,9 +4,13 @@ import { PrismaNeon } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 import ws from 'ws';
 
+//Ensure Prisma runs in the Node.js environment
+export const runtime = "nodejs"
+
 //Setup WebSocket connections, which enables Neon to use Websocket communication.
 
 neonConfig.webSocketConstructor = ws;
+
 const connectionString = `${process.env.DATABASE_URL}`;
 
 //Creates a new connection pool using the provided connection string, allowing multiple concurrent connections.
@@ -26,7 +30,7 @@ export const prisma = new PrismaClient({ adapter }).$extends({
       },
       rating: {
         compute(product) {
-          return product.rating.toString();
+          return Number(product.rating);
         },
       },
     },

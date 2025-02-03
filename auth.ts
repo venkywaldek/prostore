@@ -72,7 +72,7 @@ export const config = {
     async jwt({ token, user, trigger, session }: any) {
       //Assign user fields to token
       if (user) {
-        token.id = user.id
+        token.id = user.id;
         token.role = user.role;
 
         //If user has no name then use the first part of the  email
@@ -89,7 +89,7 @@ export const config = {
       return token;
     },
     authorized({ request, auth }: any) {
-      const cartCookie = request.cookies.get('sessionCartId')
+      const cartCookie = request.cookies.get('sessionCartId');
       // Check for session cart cookie
       if (!cartCookie) {
         //Generate new session cart id cookie

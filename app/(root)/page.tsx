@@ -6,7 +6,10 @@ const Homepage = async () => {
   return (
     <>
       <ProductList
-        data={latestProducts}
+        data={latestProducts.map((product)=> ({
+          ...product,
+          rating: Number(product.rating)
+        }))}
         title='Newest Arrivals'
         limit={4}
       />

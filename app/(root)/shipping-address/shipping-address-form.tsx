@@ -31,9 +31,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit = (values) => {
-    
-  };
+  const onSubmit = (values: z.infer<typeof shippingAddressSchema>) => {};
 
   return (
     <>
