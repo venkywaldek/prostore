@@ -1,7 +1,7 @@
 {
   "functions" : {
-    "app/auth/[...nextauth]/route.ts": {
-      "runtime": "nodejs22.13.1"
+    "app/auth/[...nextauth]/route": {
+      "runtime": "nodejs"
     }
   }
 }
