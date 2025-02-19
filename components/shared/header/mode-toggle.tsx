@@ -22,6 +22,7 @@ const ModeToggle = () => {
   if (!mounted) {
     return null;
   }
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,7 +30,7 @@ const ModeToggle = () => {
           variant='ghost'
           className='focus-visible:ring-0 focus-visible:ring-offset-0'
         >
-          {theme === 'systemm' ? (
+          {theme === 'system' ? (
             <SunMoon />
           ) : theme === 'dark' ? (
             <MoonIcon />

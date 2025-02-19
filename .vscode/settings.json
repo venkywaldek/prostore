@@ -1,7 +1,12 @@
 {
+<<<<<<< HEAD
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     
+=======
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+>>>>>>> 5777f09 (restarting the project again)
   }
 }
