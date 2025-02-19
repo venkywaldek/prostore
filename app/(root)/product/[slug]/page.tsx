@@ -19,7 +19,7 @@ const ProductDetailsPage = async (props: {
     <>
       <section>
         <div className='grid grid-cols-1 md:grid-cols-5'>
-          {/* Images component */}
+          {/* Images column */}
           <div className='col-span-2'>
             <ProductImages images={product.images} />
           </div>
@@ -60,7 +60,7 @@ const ProductDetailsPage = async (props: {
                   {product.stock > 0 ? (
                     <Badge variant='outline'> In Stock </Badge>
                   ) : (
-                    <Badge variant='destructive'> Out of Stock </Badge>
+                    <Badge variant='destructive'> Out Of Stock </Badge>
                   )}
                 </div>
                 {product.stock > 0 && (
