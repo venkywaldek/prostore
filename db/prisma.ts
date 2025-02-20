@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 import ws from 'ws';
 
 //Ensure Prisma runs in the Node.js environment
-export const runtime = "nodejs"
+export const runtime = 'nodejs';
 
 //Setup WebSocket connections, which enables Neon to use Websocket communication.
 
@@ -30,7 +30,7 @@ export const prisma = new PrismaClient({ adapter }).$extends({
       },
       rating: {
         compute(product) {
-          return Number(product.rating);
+          return product.rating.toString();
         },
       },
     },
