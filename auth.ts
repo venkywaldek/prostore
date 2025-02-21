@@ -34,7 +34,7 @@ export const authConfig: NextAuthConfig = {
         });
         //check is user exists and if the password matches
         if (user && user.password) {
-          const isMatch = await compare(
+          const isMatch = compareSync(
             credentials.password as string,
             user.password
           );
