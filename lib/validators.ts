@@ -20,6 +20,7 @@ export const insertProductSchema = z.object({
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
   price: currency,
+  rating: z.coerce.string(),
 });
 
 //Schema for signing users in
