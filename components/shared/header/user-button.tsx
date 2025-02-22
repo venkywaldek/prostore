@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {  UserIcon } from 'lucide-react';
+
 const UserButton = async () => {
   const session = await auth();
   if (!session) {

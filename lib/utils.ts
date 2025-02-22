@@ -21,10 +21,10 @@ export function formatNumberWithDecimal(num: number): string {
 export async function formatError(error: any) {
   if (error.name === 'ZodError') {
     //Handle Zod Error
-    const filedErrors = Object.keys(error.errors).map(
+    const fieldErrors = Object.keys(error.errors).map(
       (field) => error.errors[field].message
     );
-    return filedErrors.join('. ');
+    return fieldErrors.join('. ');
   } else if (
     error.name === 'PrismaClientKnownRequestError' &&
     error.code === 'P2002'
