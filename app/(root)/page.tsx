@@ -14,7 +14,7 @@ const Homepage = async () => {
       <ProductList
         data={latestProducts.map((product) => ({
           ...product,
-          rating: product.rating.toString(),
+          rating: String(product.rating),
         }))}
         title='Newest Arrivals'
         limit={4}
