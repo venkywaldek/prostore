@@ -1,5 +1,3 @@
-export const runtime = 'nodejs';
-
 import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -8,6 +6,10 @@ import { compare, compareSync } from 'bcrypt-ts-edge';
 import type { NextAuthConfig } from 'next-auth';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { Session, JWT } from 'next-auth';
+
+// Ensure runtime is set to nodejs
+// export const runtime = 'nodejs';
 
 export const authConfig: NextAuthConfig = {
   pages: {
@@ -26,7 +28,7 @@ export const authConfig: NextAuthConfig = {
         password: { type: 'password' },
       },
       async authorize(credentials) {
-        if (credentials == null) return null;
+        if (!credentials?.email || !credentials?.password) return null;
 
         //Find user in database
         const user = await prisma.user.findFirst({
