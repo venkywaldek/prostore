@@ -17,7 +17,7 @@ export const authConfig: NextAuthConfig = {
     error: '/sign-in',
   },
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const,
     maxAge: 30 * 24 * 60 * 60, //30 days
   },
   adapter: PrismaAdapter(prisma), //Use Prisma adapter for authentication
@@ -28,7 +28,7 @@ export const authConfig: NextAuthConfig = {
         password: { type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (credentials == null) return null;
 
         //Find user in database
         const user = await prisma.user.findFirst({
@@ -38,7 +38,7 @@ export const authConfig: NextAuthConfig = {
         });
         //check is user exists and if the password matches
         if (user && user.password) {
-          const isMatch = compareSync(
+          const isMatch = await compare(
             credentials.password as string,
             user.password
           );
