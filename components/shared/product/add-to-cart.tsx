@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { Plus, Minus, Loader } from 'lucide-react';
 import { Toaster, toast } from 'sonner';
-import { ToastAction } from '@/components/ui/toast';
 import { Cart, CartItem } from '@/types';
 import { addItemToCart, removeItemFromCart } from '@/lib/actions/cart.actions';
 import { useTransition } from 'react';
@@ -22,7 +21,9 @@ const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
       }
 
       //Handle success add to cart
-      toast.success(res.message, {
+      toast.success(`${item.name} added to cart`, {
+        duration: 5000, //Adjust display duration
+        description: res.message,
         action: {
           label: 'Go To Cart',
           onClick: () => router.push('/cart'),
