@@ -11,13 +11,13 @@ import { Session, JWT } from 'next-auth';
 // Ensure runtime is set to nodejs
 export const runtime = 'nodejs';
 
-export const authConfig: NextAuthConfig = {
+export const config = {
   pages: {
     signIn: '/sign-in',
     error: '/sign-in',
   },
   session: {
-    strategy: 'jwt' as const,
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, //30 days
   },
   adapter: PrismaAdapter(prisma), //Use Prisma adapter for authentication
@@ -98,4 +98,4 @@ export const authConfig: NextAuthConfig = {
   },
 } satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
