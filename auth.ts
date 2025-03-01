@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 import { Session, JWT } from 'next-auth';
 
 // Ensure runtime is set to nodejs
-// export const runtime = 'nodejs';
+export const runtime = 'nodejs';
 
 export const authConfig: NextAuthConfig = {
   pages: {
