@@ -50,7 +50,7 @@ const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
 
   return (
     <>
-      <Toaster position='top-right' /> {/*Ensure to include Toaster */}
+      <Toaster /> {/*Ensure to include Toaster */}
       {existItem ? (
         <div>
           <Button

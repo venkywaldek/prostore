@@ -7,12 +7,14 @@ import ProductImages from '@/components/shared/product/product-images';
 import AddToCart from '@/components/shared/product/add-to-cart';
 import { getMyCart } from '@/lib/actions/cart.actions';
 
-const ProductDetailsPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = await params;
+const ProductDetailsPage = async (props: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await props.params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  const cart = await getMyCart();
+  const cart = await getMyCart()
   return (
     <>
       <section>
@@ -65,14 +67,14 @@ const ProductDetailsPage = async ({ params }: { params: { slug: string } }) => {
                 {product.stock > 0 && (
                   <div className='flex-center'>
                     <AddToCart
-                      cart={cart}
+                    cart={cart}
                       item={{
                         productId: product.id,
                         name: product.name,
                         slug: product.slug,
                         price: product.price,
                         qty: 1,
-                        image: product.images?.[0] ?? '',
+                        image: product.images![0],
                       }}
                     />
                   </div>
