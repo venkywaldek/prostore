@@ -11,7 +11,7 @@ import { Session, JWT } from 'next-auth';
 // Ensure runtime is set to nodejs
 export const runtime = 'nodejs';
 
-export const config = {
+export const authConfig : NextAuthConfig = {
   pages: {
     signIn: '/sign-in',
     error: '/sign-in',
@@ -98,4 +98,4 @@ export const config = {
   },
 } satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
